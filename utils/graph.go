@@ -46,6 +46,7 @@ func BuildGraph(path string) (graph Graph) {
 
 	i, j := 0, 0
 	//边的数目
+A:
 	for {
 		line, err := buf.ReadString('\n')
 		if err != nil {
@@ -56,7 +57,8 @@ func BuildGraph(path string) (graph Graph) {
 		}
 		line = strings.TrimSpace(line)
 		dataStr := strings.Split(line, " ")
-		if dataStr == nil {
+
+		if dataStr == nil || (len(dataStr) == 1 && dataStr[0] == "") {
 			i++
 			j = 0
 			continue
@@ -95,9 +97,12 @@ func BuildGraph(path string) (graph Graph) {
 				panic("数据格式错误，食蚁兽边需要2个数据，现有：" + strconv.Itoa(len(data)) + "个")
 			}
 			graph.G[data[0]][data[1]] = INF
+		default:
+			break A
 		}
-	}
 
+	}
+	return graph
 }
 
 //stringData2int 字符串切片转int切片
@@ -111,8 +116,4 @@ func stringData2int(s []string) []int {
 		data[i] = val
 	}
 	return data
-}
-
-func checkErr() {
-
 }
