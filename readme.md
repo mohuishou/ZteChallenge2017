@@ -24,3 +24,9 @@
 //食蚁兽边（无法到达）
 顶点 顶点
 ```
+
+## 测试程序下载
+
+[download](./bin/snapshot/downloads.md)
+
+
