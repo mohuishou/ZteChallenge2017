@@ -1,3 +1,4 @@
 references
 deploy
 .goxc-temp
+*.goxc.json
