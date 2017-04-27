@@ -5,6 +5,8 @@ import (
 
 	"fmt"
 
+	"time"
+
 	"github.com/mohuishou/ZteChallenge2017/deploy"
 	"github.com/mohuishou/ZteChallenge2017/utils"
 )
@@ -19,7 +21,13 @@ func main() {
 
 	g := utils.BuildGraph(path)
 
+	//记录开始时间
+	start := time.Now()
+
 	p, d := deploy.Deploy(g)
+
+	//记录结束时间
+	end := time.Now()
 
 	if len(p) > g.MaxVexNum {
 		fmt.Println("错误：当前不存在", g.MaxVexNum, "个节点以内的路径")
@@ -36,4 +44,6 @@ func main() {
 	fmt.Println("节点数目：", len(p))
 	fmt.Println("路径长度：", d)
 
+	//输出执行时间，单位为毫秒。
+	fmt.Println("运行时间：", end.Sub(start))
 }
