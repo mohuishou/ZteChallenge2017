@@ -29,4 +29,10 @@
 
 [download](./bin/snapshot/downloads.md)
 
+## 使用
+```bash
+ZteChallenge2017 -path=测试文件路径
+
+ZteChallenge2017 -help //帮助
+```
 

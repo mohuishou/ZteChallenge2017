@@ -15,7 +15,12 @@ func main() {
 
 	var path string
 	//flag.StringVar这样的函数第一个参数换成了变量地址，后面的参数和flag.String是一样的。
-	flag.StringVar(&path, "path", "./example/case_1.txt", "Where is your graph text?")
+	flag.StringVar(&path, "path", "", "Where is your case path?")
+
+	if path == "" {
+		fmt.Println("错误，请输入测试文件路径 -path=路径")
+		return
+	}
 
 	flag.Parse() //解析输入的参数
 
