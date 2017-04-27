@@ -79,7 +79,7 @@ A:
 			graph.ENum = data[5]
 		case 1:
 			if len(data) != 3 {
-				panic("数据格式错误，食蚁兽边需要3个数据，现有：" + strconv.Itoa(len(data)) + "个")
+				panic("数据格式错误，边需要3个数据，现有：" + strconv.Itoa(len(data)) + "个")
 			}
 			graph.G[data[0]][data[1]] = data[2]
 			graph.G[data[1]][data[0]] = data[2]
@@ -88,7 +88,7 @@ A:
 			j++
 		case 3:
 			if len(data) != 2 {
-				panic("数据格式错误，食蚁兽边需要2个数据，现有：" + strconv.Itoa(len(data)) + "个")
+				panic("数据格式错误，必过边需要2个数据，现有：" + strconv.Itoa(len(data)) + "个")
 			}
 			graph.MustEdge[j] = data
 			j++
@@ -97,6 +97,7 @@ A:
 				panic("数据格式错误，食蚁兽边需要2个数据，现有：" + strconv.Itoa(len(data)) + "个")
 			}
 			graph.G[data[0]][data[1]] = INF
+			graph.G[data[1]][data[0]] = INF
 		default:
 			break A
 		}
