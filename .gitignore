@@ -3,3 +3,4 @@ deploy
 .goxc-temp
 *.goxc.json
 bin
+run.sh
