@@ -17,19 +17,24 @@ type Graph struct {
 	MaxVexNum  int     //最多可以经过的顶点数目
 	MustVex    []int   //必过点集合
 	MustEdge   [][]int //必过边集合
-	G          [][]int //邻接矩阵
+	GNoRight   [][]int //邻接矩阵-无权
+	G          [][]int //邻接矩阵-有权
 }
 
 //CreateGraph 创建一个图并且初始化邻接矩阵
 func CreateGraph(n int) (graph Graph) {
 	graph = Graph{VNum: n}
 	graph.G = make([][]int, n)
+	graph.GNoRight = make([][]int, n)
 	for i := 0; i < n; i++ {
 		graph.G[i] = make([]int, n)
+		graph.GNoRight[i] = make([]int, n)
 		for j := 0; j < n; j++ {
 			graph.G[i][j] = INF
+			graph.GNoRight[i][j] = INF
 			if i == j {
 				graph.G[i][j] = 0
+				graph.GNoRight[i][j] = 0
 			}
 		}
 	}
@@ -83,6 +88,8 @@ A:
 			}
 			graph.G[data[0]][data[1]] = data[2]
 			graph.G[data[1]][data[0]] = data[2]
+			graph.GNoRight[data[0]][data[1]] = 1
+			graph.GNoRight[data[1]][data[0]] = 1
 		case 2:
 			graph.MustVex[j] = data[0]
 			j++
@@ -98,6 +105,8 @@ A:
 			}
 			graph.G[data[0]][data[1]] = INF
 			graph.G[data[1]][data[0]] = INF
+			graph.GNoRight[data[0]][data[1]] = INF
+			graph.GNoRight[data[1]][data[0]] = INF
 		default:
 			break A
 		}
